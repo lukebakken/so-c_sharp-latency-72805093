@@ -7,11 +7,13 @@ class Receive
 {
     public static void Main()
     {
-        //ThreadPool.SetMinThreads(200, 200);
+        var c = Environment.ProcessorCount * 4;
+
+        ThreadPool.SetMinThreads(c, c);
         var factory = new ConnectionFactory()
         {
-            HostName = "127.0.0.1",
-            ConsumerDispatchConcurrency = 200
+            HostName = "shostakovich",
+            ConsumerDispatchConcurrency = c
         };
 
 
