@@ -6,7 +6,6 @@ Prerequisites
 - Python
 - Visual studio
 - Windows
-- Clumsy(Windows Only)
 
 ## Python Sender, C# Receiver.
 
