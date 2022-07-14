@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 import pika, sys, os
-import random
 import datetime
 import orjson
 
 # Created by following https://www.rabbitmq.com/tutorials/tutorial-one-python.html
 def main():
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='shostakovich'))
+    h = 'localhost'
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=h))
     channel = connection.channel()
 
     channel.queue_declare(queue='hello')

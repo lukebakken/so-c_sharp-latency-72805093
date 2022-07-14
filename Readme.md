@@ -27,3 +27,38 @@ Prerequisites
 4. Start clumsy with the same settings as above.
 5. the latency will creep up a bit but it will still receive messages at 5hz. 
 6. stop the sender and check the receiver, it will stop receiving messages as it already has them all.
+
+## Using `toxiproxy` instead of `clumsy`
+
+In a separate terminal, start the server:
+
+```
+cd bin\toxiproxy
+.\toxiproxy-server-windows-amd64.exe
+```
+
+I ran the Python sender program on the same server as RabbitMQ. Ensure the C# receiver will connect to `localhost`.
+
+First, create the TCP proxy itself. Note that since I'm running RabbitMQ on a separate system, I can use the same ports here. You will need to do something differently if everything runs on `localhost`. I suggest changing the `--listen` port to 55672 and your receiving app to use that port.
+
+```
+.\toxiproxy-cli-windows-amd64.exe create --listen localhost:5672 --upstream shostakovich:5672 amqp-proxy
+```
+
+Then, to immediately enable 20ms latency to the upstream, run this command:
+
+```
+.\toxiproxy-cli-windows-amd64.exe toxic add --type latency --upstream --attribute latency=20 --toxicName amqp_upstream_latency_20ms amqp-proxy
+```
+
+To see the current "toxics" in place:
+
+```
+.\toxiproxy-cli-windows-amd64.exe inspect amqp-proxy
+```
+
+To remove the latency, run this command:
+
+```
+.\toxiproxy-cli-windows-amd64.exe toxic remove --toxicName amqp_upstream_latency_20ms amqp-proxy
+```

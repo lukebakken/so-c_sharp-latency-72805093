@@ -12,7 +12,8 @@ class Receive
         ThreadPool.SetMinThreads(c, c);
         var factory = new ConnectionFactory()
         {
-            HostName = "shostakovich",
+            HostName = "localhost",
+            // HostName = "shostakovich",
             // ConsumerDispatchConcurrency = c
         };
 
