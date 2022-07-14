@@ -13,7 +13,7 @@ class Receive
         var factory = new ConnectionFactory()
         {
             HostName = "shostakovich",
-            ConsumerDispatchConcurrency = c
+            // ConsumerDispatchConcurrency = c
         };
 
 

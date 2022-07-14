@@ -6,7 +6,7 @@ import orjson
 
 # Created by following https://www.rabbitmq.com/tutorials/tutorial-one-python.html
 def main():
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host='127.0.0.1'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host='shostakovich'))
     channel = connection.channel()
 
     channel.queue_declare(queue='hello')
